@@ -1,20 +1,22 @@
 pipeline {
-    agent any
-    stages {
-        stage('Clone') {
-            steps {
-                git branch: 'main', url: 'https://github.com/DecayDestructor/jenkins-ci-demo.git'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh '''
-                echo "Building Java project..."
-                mkdir -p build
-                javac -d build src/*.java
-                echo "Build successful"
-                '''
-            }
-        }
-    }
+ agent any
+ stages {
+ stage('Clone') {
+ steps {
+ git branch: 'master', url: 'https://github.com/piyushr6/jenkins-ci.git'
+ }
+ }
+ stage('Build') {
+ steps {
+ sh '''
+ echo "Building Java project..."
+ echo "Listing workspace contents: "
+ ls
+ mkdir -p build
+ javac -d build src/*.java
+ echo "Build successful"
+ '''
+ }
+ }
+ }
 }
